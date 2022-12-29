@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+
+class Complex{
+    double real;
+    double img;
+    public:
+    Complex();
+    friend istream & operator >>(istream &, Complex &);
+    friend ostream & operator <<(ostream &, const Complex &);
+    Complex operator + (Complex);
+    Complex operator * (Complex);
+};
+Complex::Complex(){
+    real = 0;
+    img = 0;
+}
+istream & operator >> (istream &, Complex & i){
+    cin>>i.real>>i.img;
+    return cin;
+}
+ostream & operator << (ostream &, const Complex & d){
+    cout<<d.real<<"+"<<d.img<<"i"<<endl;
+    return cout;
+}
+Complex Complex::operator + (Complex c1){
+    Complex temp;
+    temp.real=real+c1.real;
+    temp.img=img+c1.img;
+    return temp;
+}
+Complex Complex::operator*(Complex c2){
+    Complex tmp;
+    tmp.real=real*c2.real-img*c2.real;
+    return tmp;
+}
+int main(){
+    Complex c1,c2,c3,c4;
+    int flag=1;
+    char b;
+    while(flag==1){
+        cout<<"Enter Real and Imaginary part of Complex NUmber 1 : \n";
+        cin>>c1;
+        cout<<"Enter Real and Imaginary part of Complex NUmber 1 : \n";
+        cin>>c2;
+        int f=1;
+        while (f==1){
+            cout<<"Complex Number 1 :"<<c1<<endl;
+            cout<<"Complex Number 2 :"<<c2<<endl;
+            cout<<"*******MENU********"<<endl;
+            cout<<"1 . Addition "<<endl;
+            cout<<"2 . Multiplication "<<endl;
+            cout<<"3 . Exit \n";
+            int a;
+            cout<<"Enter your choice for above Menu";
+            cin>>a;
+            if(a==1){
+                c3=c1+c2;
+                cout<<"Addition :"<<c3<<endl;
+                cout<<"Do you wan to perform anther operation (y/n) : \n";
+                cin>>b;
+                if(b=='y' || b=='Y'){
+                    f=1;
+                }else{
+                    cout<<"Thanks for using this program !!\n";
+                    flag=0;
+                    f=0;
+                }
+            }else{
+                cout<<"Thanks for using this program!!\n";
+                flag=0;
+                f=0;
+            }
+        }
+    }
+    return 0;
+}

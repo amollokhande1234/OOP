@@ -1,0 +1,98 @@
+#include<iostream>
+using namespace std;
+
+class Publication{ // Publication
+    private:
+        string title;
+        float price;
+    void add(){ // Add Function
+        cout<<"Enter the Book Name :) "<<endl;
+        cin.ignore();
+        getline(cin,title);
+        cout<<"Enter Price :) "<<endl;
+        cin>>price;
+    }
+    void Display(){
+        cout<<"----------------------------";
+        cout<<"Title of Book : "<<title;
+        cout<<"Price of Book : "<<price;
+    }
+};
+class book : public Publication{
+    private:
+        int page_count;
+    public:
+        void add_book(){
+            try{
+                add();
+                cout<<"Enter Page count of Book : ";
+                cin>>page_count;
+
+                if(page_count<=0)
+                    throw page_count;
+            }
+                catch(...){
+                    cout<<"Invalid Page count.....";
+                    page_count = 0;
+                }
+        }
+        void display_book(){
+            display();
+            cout<<"Page count : "<<page_count;
+            cout<<"-------------------------------------";
+        }
+};
+class tape : public Publication{
+    private:
+        float play_time;
+    public:
+        void add_tape(){
+            try{
+                add();
+                cout<<"Enter Play Duratrion of Tape : ";
+                cin>>play_time;
+                if(play_time <=0)
+                throw play_time;
+            }catch(...){
+                cout<<"Invalid Play time ...........";
+                play_time = 0;
+            }
+        }
+        void display_tape(){
+            display();
+            cout<<"Play time : "<<play_time<<"min";
+            cout<<"----------------------------------";
+        }
+};
+int main(){
+    book b1[10];
+    tape t1[10];
+    int ch=0,b_count=0,t_count=0;
+    do{
+        cout<<"Publication Information System ";
+        cout<<" Menu ";
+        cout<<"1. Add Information to Books ";
+        cout<<"2. Add Information to Tape";
+        cout<<"3. Display Information of Books ";
+        cout<<"4. Display Information of Tapes ";
+        cout<<"5. Exit";
+        cout<<"Enter Choice : ";
+        cin>>ch;
+
+        switch (ch)
+        {
+        case 1/* constant-expression */:
+            /* code */
+            b1[b_count].add_book();
+            b_count++;
+            break;
+        
+        case 2:
+            t1[t_count].add_tape();
+        
+        default:
+            break;
+        }
+    }
+    return 0;
+}
